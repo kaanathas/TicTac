@@ -38,7 +38,7 @@ def showHistory():
         htmlGen.htmlPage()
         showHistory()
         
-def handleTurn(currentPlayer):
+def Turn(currentPlayer):
     global exit
     if currentPlayer=="X":
         print("\n"+player1 +" s turn ")
@@ -66,7 +66,7 @@ def handleTurn(currentPlayer):
     bd.board[keyboardKey]=currentPlayer
     bd.displayBoard()
     
-def flipPlayer():
+def changePlayer():
     global currentPlayer
     if not exit:
         if currentPlayer=="X":
@@ -87,18 +87,18 @@ def playGame():
        "-","-","-",
        "-","-","-",
        ]
-        bd.gameStill=True
+        bd.playing=True
         bd.displayBoard()
         winner=None
-        while bd.gameStill:
+        while bd.playing:
 
-            handleTurn(currentPlayer)
+            Turn(currentPlayer)
 
-            winner=bd.checkGameOver()
+            winner=bd.GameOver()
 
-            flipPlayer()
+            changePlayer()
             if exit:
-                bd.gameStill=False
+                bd.playing=False
         if not exit:
             if winner=="X" or winner=="O":
                 if winner=="X":
